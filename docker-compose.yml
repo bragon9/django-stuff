@@ -9,8 +9,8 @@ services:
     command: gunicorn --reload --bind 0.0.0.0:8000 django_stuff.wsgi
     volumes:
       - .:/app
-    ports:
-      - 8000:8000
+    expose:
+      - 8000
     env_file:
       - ./.env.dev
     depends_on:
@@ -21,6 +21,14 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.dev.db
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./static/:/home/app/static
+    ports:
+      - 8000:80
+    depends_on:
+      - web
 
 volumes:
   postgres_data:

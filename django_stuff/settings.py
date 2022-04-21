@@ -51,6 +51,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8000"]
+
 ROOT_URLCONF = 'django_stuff.urls'
 
 TEMPLATES = [
